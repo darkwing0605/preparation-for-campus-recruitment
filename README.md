@@ -3,6 +3,6 @@
 ## 前言
 >好记性不如烂笔头，还是乖乖把一些看到的知识点一点一点敲下来吧
 
-[经典面试题](classicalInterviewQuestion.md)
+[经典面试题](classicalInterviewQuestions.md)
 
-[在线编程题](programmingProblemOnline.md)
+[在线编程题](programmingProblemsOnline.md)
