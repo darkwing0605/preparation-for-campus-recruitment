@@ -337,3 +337,77 @@ var fibonacci = function (n) {
    return _fib(n)[n];
 }
 ```
+## 10.颜色字符串转换
+>将 rgb 颜色字符串转换为十六进制的形式，如 rgb(255, 255, 255) 转为 #ffffff
+>1. rgb 中每个 , 后面的空格数量不固定
+>2. 十六进制表达式使用六位小写字母
+>3. 如果输入不符合 rgb 格式，返回原始输入
+```
+function rgb2hex(sRGB) {
+    var regexp=/rgb\((\d+),\s*(\d+),\s*(\d+)\)/;
+    var ret=sRGB.match(regexp);
+    if(!ret){
+        return sRGB;
+    }else{
+        var str='#';
+        for(var i=1;i<=3;i++){
+            var m=parseInt(ret[i]);
+            if(m<=255&&m>=0){
+                str+=(m<16?'0'+m.toString(16):m.toString(16));
+            }else{
+                return sRGB;
+            }
+        }
+        return str;
+    }
+}
+```
+## 11.将字符串转换为驼峰格式
+>css 中经常有类似 background-image 这种通过 - 连接的字符，通过 javascript 设置样式的时候需要将这种样式转换成 backgroundImage 驼峰格式，请完成此转换功能
+>1. 以 - 为分隔符，将第二个起的非空单词首字母转为大写
+>2. -webkit-border-image 转换后的结果为 webkitBorderImage
+```
+function cssStyle2DomStyle(sName) {
+    return sName.replace(/(?!^)\-(\w)(\w+)/g, function(a, b, c){
+            return b.toUpperCase() + c.toLowerCase();
+        }).replace(/^\-/, '');
+}
+```
+
+```
+function cssStyle2DomStyle(sName) {
+    var arr = sName.split('');  
+    //判断第一个是不是 '-'，是的话就删除 
+    if(arr.indexOf('-') == 0)
+        arr.splice(0,1);
+   //处理剩余的'-'
+    for(var i=0; i<arr.length; i++){
+        if(arr[i] == '-'){
+            arr.splice(i,1);
+            arr[i] = arr[i].toUpperCase();
+        }
+    }
+    return arr.join('');
+}
+```
+## 12.求二次方
+>为数组 arr 中的每个元素求二次方。不要直接修改数组 arr，结果返回新的数组
+```
+function square(arr) {
+    return arr.map(function(item,index,array){
+        return item*item;
+    })
+}
+```
+
+```
+function square(arr) {
+   //声明一个新的数组存放结果
+     var a = [];
+     arr.forEach(function(e){
+         //将arr中的每一个元素求平方后，加入到a数组中
+         a.push(e*e);
+     });
+     return a;
+ }
+```
