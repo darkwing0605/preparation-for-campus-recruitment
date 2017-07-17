@@ -411,3 +411,60 @@ function square(arr) {
      return a;
  }
 ```
+## 13.避免全局变量
+>要求：给定的 js 代码中存在全局变量，请修复：
+
+>思路：在Javascript语言中，声明变量使用的都是关键字var，如果不使用var而直接声明变量，则该变量为全局变量。
+```
+function globals() {
+    //只需要在声明myObject时加上var就行了
+    var myObject = {
+      name : 'Jory'
+    };
+ 
+    return myObject;
+}
+```
+## 14.将字符串转换为驼峰格式
+>要求：修改 js 代码中 parseInt 的调用方式，使之通过全部测试用例。
+```
+parseInt(string, radix)
+//当参数 radix 的值为 0，或没有设置该参数时，parseInt() 会根据 string 来判断数字的基数。
+```
+>思路：举例，如果 string 以 "0x" 开头，parseInt() 会把 string 的其余部分解析为十六进制的整数。如果 string 以 0 开头，那么 ECMAScript v3 允许 parseInt() 的一个实现把其后的字符解析为八进制或十六进制的数字。如果 string 以 1 ~ 9 的数字开头，parseInt() 将把它解析为十进制的整数。
+```
+function parse2Int(num)
+{
+    return parseInt(num,10);
+}
+//解释来自于W3school
+```
+## 15.计时器
+>要求：实现一个打点计时器，要求：
+
+>1、从 start 到 end（包含 start 和 end），每隔 100 毫秒 console.log 一个数字，每次数字增幅为 1；
+
+>2、返回的对象中需要包含一个 cancel 方法，用于停止定时操作；
+
+>3、第一个数需要立即输出。
+
+>思路：setInterval() 方法会按照指定周期不停地调用函数，直到 clearInterval() 被调用或窗口被关闭。由 setInterval() 返回的 ID 值可用作 clearInterval() 方法的参数。注意第一个数需要立即输出即可。
+```
+function count(start, end) {
+  //立即输出第一个值
+  console.log(start++);
+     var timer = setInterval(function(){
+         if(start <= end){
+             console.log(start++);
+         }else{
+             clearInterval(timer);
+         }
+     },100);
+    //返回一个对象
+     return {
+         cancel : function(){
+             clearInterval(timer);
+         }
+     };
+ }
+```
