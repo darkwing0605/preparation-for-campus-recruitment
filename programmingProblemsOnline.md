@@ -468,3 +468,57 @@ function count(start, end) {
      };
  }
 ```
+## 16.函数的上下文
+
+>要求：将函数 fn 的执行上下文改为 obj 对象
+
+>思路：在JavaScript中，函数是一种对象，其上下文是可以变化的，对应的，函数内的this也是可以变化的，函数可以作为一个对象的方法，也可以同时作为另一个对象的方法，可以通过Function对象中的call或者apply方法来修改函数的上下文，函数中的this指针将被替换为call或者apply的第一个参数。将函数 fn 的执行上下文改为 obj 对象，只需要将obj作为call或者apply的第一个参数传入即可。
+```
+function speak(fn, obj) {
+  return fn.apply(obj, obj);
+ }
+```
+
+## 17.流程控制
+
+>要求：实现 fizzBuzz 函数，参数 num 与返回值的关系如下：
+
+>1、如果 num 能同时被 3 和 5 整除，返回字符串 fizzbuzz2、如果 num 能被 3 整除，返回字符串 fizz
+>3、如果 num 能被 5 整除，返回字符串 buzz
+>4、如果参数为空或者不是 Number 类型，返回 false
+>5、其余情况，返回参数 num
+>思路：能否整除即余数是否为0，则使用%运算符。使用if-elseif结构，只要某一条匹配，则下面的不会在进行判断。判断num是否为Number，可以用typeof运算符，返回的是字符串。
+```
+function fizzBuzz(num) {
+    if(num%3 == 0 && num%5 == 0)
+        return "fizzbuzz";
+    else if(num%3 == 0)
+        return "fizz";
+    else if(num%5 == 0)
+        return "buzz";
+    else if(num == null || typeof num != "number")
+        return false;
+    else return num;
+}
+```
+
+## 18.返回函数
+
+>要求：实现函数 functionFunction，调用之后满足如下条件：
+
+>1、返回值为一个函数 f
+>2、调用返回的函数 f，返回值为按照调用顺序的参数拼接，拼接字符为英文逗号加一个空格，即 ', '
+>3、所有函数的参数数量为 1，且均为 String 类型
+>思路：首先执行functionFunction('Hello')，传入参数str，然后返回函数f，f与('world')组合，执行f('world')，传入参数s，f返回str+", "+s，即Hello, world。注意中间的逗号后面有一个空格。
+```
+链接：https://www.nowcoder.com/questionTerminal/1f9fd23cdfd14675ab10207191e1d035
+来源：牛客网
+
+function functionFunction(str) {
+  var f = function(s){
+         return str+", "+s;
+     }
+     return f;
+ }
+ ```
+ 
