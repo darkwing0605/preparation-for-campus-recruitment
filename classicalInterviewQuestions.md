@@ -208,3 +208,55 @@ getElementById() //通过元素Id，唯一性
 >向服务器发送大量数据（POST 没有数据量限制）
 
 >发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠。
+## 21.XHTML和HTML有什么区别
+>HTML是一种基本的WEB网页设计语言，XHTML是一个基于XML的置标语言
+
+>最主要的不同：
+
+>XHTML 元素必须被正确地嵌套。
+
+>XHTML 元素必须被关闭。
+
+>标签名必须用小写字母。
+
+>XHTML 文档必须拥有根元素。
+## 22.什么是语义化的HTML?
+>直观的认识标签 对于搜索引擎的抓取有好处，用正确的标签做正确的事情！
+
+>html语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析；
+
+>在没有样式CCS情况下也以一种文档格式显示，并且是容易阅读的。搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于 SEO。
+
+>使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
+## 23.常见的浏览器内核有哪些？
+>Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等
+
+>Presto内核：Opera7及以上。 [Opera内核原为：Presto，现为：Blink;]Webkit内核：Safari,Chrome等。 [ Chrome的：Blink（WebKit的分支）]
+
+## 24.HTML5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和HTML5？
+
+>HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
+
+>绘画 canvas
+
+>用于媒介回放的 video 和 audio 元素
+
+>本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；
+
+>sessionStorage 的数据在浏览器关闭后自动删除
+
+>语意化更好的内容元素，比如 article、footer、header、nav、section
+
+>表单控件，calendar、date、time、email、url、search
+
+>新的技术webworker, websockt, Geolocation
+
+>移除的元素
+
+>纯表现的元素：basefont，big，center，font, s，strike，tt，u；
+
+>对可用性产生负面影响的元素：frame，frameset，noframes；
+
+>支持HTML5新标签：
+
+>IE8/IE7/IE6支持通过document.createElement方法产生的标签，可以利用这一特性让这些浏览器支持HTML5新标签，浏览器支持新标签后，还需要添加标签默认的样式
