@@ -522,3 +522,114 @@ function functionFunction(str) {
  }
  ```
  
+## 19.二次封装函数
+>要求：
+
+>已知函数 fn 执行需要 3 个参数。请实现函数 partial，调用之后满足如下条件：
+
+>1、返回一个函数 result，该函数接受一个参数
+
+>2、执行 result(str3) ，返回的结果与 fn(str1, str2, str3) 一致
+```
+// 一般写法
+function partial(fn, str1, str2) {
+    function result(str3) {
+        return fn(str1, str2, str3);
+    }
+ 
+    return result;
+}
+ 
+// call
+function partial(fn, str1, str2) {
+    function result(str3) {
+        return fn.call(this, str1, str2, str3);
+    }
+ 
+     return result;
+}
+ 
+// apply（这里只是为了对照）
+function partial(fn, str1, str2) {
+    function result(str3) {
+        return fn.apply(this, [str1, str2, str3]);
+    }
+ 
+    return result;
+}
+ 
+// 这个bind会生成一个新函数对象, 它的str1, str2参数都定死了, str3未传入, 一旦传入就会执行
+function partial(fn, str1, str2) {
+    return fn.bind(this, str1, str2); // 或 return fn.bind(null, str1, str2);
+}
+ 
+// bind同上, 多了一步, 把str3传入的过程写在另一个函数里面, 而另一个函数也有str1, str2参数
+function partial(fn, str1, str2) {
+    function result(str3) {
+        return fn.bind(this, str1, str2)(str3);
+    }
+ 
+    return result;
+}
+ 
+// 匿名函数
+function partial(fn, str1, str2) {
+    return function(str3) {
+        return fn(str1, str2, str3);
+    }
+}
+// ES6
+const partial = (fn, str1, str2) => str3 => fn(str1, str2, str3);
+```
+
+## 20.使用 arguments
+>要求：
+
+>函数 useArguments 可以接收 1 个及以上的参数。请实现函数 useArguments，返回所有调用参数相加后的结果。本题的测试参数全部为 Number 类型，不需考虑参数转换。
+
+>思路：
+
+>本题考查的是对于arguments的使用，arguments能获得函数对象传入的参数组，类似与一个数组，能够通过length获取参数个数，能通过下标获取该位置的参数，但是它不能使用forEach等方法。本题先通过arguments.length获得参数个数，然后循环求和，得出结果。
+```
+function useArguments() {
+  /*
+   因为参数数量不定，可以先获取参数个数arguments.length
+   然后循环求值
+  */
+  //声明一个变量保存最终结果
+  var sum = 0;
+  //循环求值
+  for(var i = 0; i < arguments.length; i++){
+      sum += arguments[i];
+  }
+  return sum;
+ }
+```
+
+## 21.二次封装函数
+>要求：
+
+>实现函数 partialUsingArguments，调用之后满足如下条件：
+
+>1、返回一个函数 result
+
+>2、调用 result 之后，返回的结果与调用函数 fn 的结果一致
+
+>3、fn 的调用参数为 partialUsingArguments 的第一个参数之后的全部参数以及 result 的调用参数
+
+>思路：
+
+>arguments不能用slice方法直接截取，需要先转换为数组，var args = Array.prototype.slice.call(arguments);合并参数可以使用concat方法，并且也需要将arguments先转换为数组才能使用concat进行合并。最用使用apply执行传入的函数即可。
+```
+function partialUsingArguments(fn) {
+     //先获取p函数第一个参数之后的全部参数
+     var args = Array.prototype.slice.call(arguments,1);
+     //声明result函数
+     var result = function(){
+         //使用concat合并两个或多个数组中的元素
+         return fn.apply(null, args.concat([].slice.call(arguments)));
+     }
+     return result;
+ }
+ ```
+ 
