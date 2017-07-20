@@ -633,3 +633,76 @@ function partialUsingArguments(fn) {
  }
  ```
  
+## 22.柯里化
+
+>要求：
+
+>已知 fn 为一个预定义函数，实现函数 curryIt，调用之后满足如下条件：
+
+>1、返回一个函数 a，a 的 length 属性值为 1（即显式声明 a 接收一个参数）
+
+>2、调用 a 之后，返回一个函数 b, b 的 length 属性值为 1
+
+>3、调用 b 之后，返回一个函数 c, c 的 length 属性值为 1
+
+>4、调用 c 之后，返回的结果与调用 fn 的返回值一致
+
+>5、fn 的参数依次为函数 a, b, c 的调用参数
+
+>思路：
+
+>不用 arguments.callee 的方法，用变量名代替了，大同小异：
+```
+function curryIt(fn) {
+    var length = fn.length,
+        args = [];
+    var result =  function (arg){
+        args.push(arg);
+        length --;
+        if(length <= 0 ){
+            return fn.apply(this, args);
+        } else {
+            return result;
+        }
+    }
+     
+    return result;
+}
+```
+
+## 23.且运算
+
+>要求：
+
+>返回参数 a 和 b 的逻辑且运算结果。
+
+>思路：
+
+>且运算符"&&"的运算规则是：如果第一个运算子的布尔值为true，则返回第二个运算子的值（注意是值，不是布尔值）；如果第一个运算子的布尔值为false，则直接返回第一个运算子的值，且不再对第二个运算子求值。
+```
+function and(a, b) {
+    return !!(a && b)
+    //如果a为true，b为非Boolean就会返回非Boolean值，所以加一步转换
+}
+```
+
+## 24.二进制转换
+
+>要求：
+
+>给定二进制字符串，将其换算成对应的十进制数字
+
+>思路：
+
+>parseInt方法可以将其它进制转换为十进制，只需要给该方法传入需要转换的字符串和该字符串的进制表示两个参数即可。
+```
+function base10(str) {
+    /**
+        其它进制转十进制
+        parseInt(str,2)
+        parseInt(str,8)
+        parseInt(str,16)
+    */
+    return parseInt(str,2);
+}
+```
