@@ -706,3 +706,62 @@ function base10(str) {
     return parseInt(str,2);
 }
 ```
+## 25.改变上下文
+
+>要求：
+
+>将函数 fn 的执行上下文改为 obj，返回 fn 执行后的值。
+
+>思路：
+
+>在JavaScript中，函数是一种对象，其上下文是可以变化的，对应的，函数内的this也是可以变化的，函数可以作为一个对象的方法，也可以同时作为另一个对象的方法，可以通过Function对象中的call或者apply方法来修改函数的上下文，函数中的this指针将被替换为call或者apply的第一个参数。将函数 fn 的执行上下文改为 obj 对象，只需要将obj作为call或者apply的第一个参数传入即可。
+```
+function alterContext(fn, obj) {
+  return fn.call(obj,obj);
+ }
+```
+
+## 26.判断是否包含数字
+
+>要求：
+
+>给定字符串 str，检查其是否包含数字，包含返回 true，否则返回 false
+
+>思路：
+
+>判断字符串中是否含有数字，可以用正则表达式。/\d/可以匹配字符串中的数字字符，用test方法可以检测。
+```
+function containsNumber(str) {
+     var b = /\d/;
+     return b.test(str);
+ }
+```
+
+## 27.属性遍历
+
+>要求：
+
+>找出对象 obj 不在原型链上的属性(注意这题测试例子的冒号后面也有一个空格~)
+
+>1、返回数组，格式为 key: value
+
+>2、结果数组不要求顺序
+
+>思路：
+
+>可以使用for-in来遍历对象中的属性，hasOwnproperty方法能返回一个布尔值，指出一个对象是否具有指定名称的属性。此方法无法检查该对象的原型链中是否具有该属性，该属性必须为对象本身的属性。
+```
+function iterate(obj) {
+     var arr = [];
+     //使用for-in遍历对象属性
+     for(var key in obj){
+         //判断key是否为对象本身的属性
+         if(obj.hasOwnProperty(key)){
+             //将属性和值按格式存入数组
+             arr.push(key+": "+obj[key]);
+         }
+     }
+     return arr;
+ }
+ ```
+ 
