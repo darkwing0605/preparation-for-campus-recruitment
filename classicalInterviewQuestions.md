@@ -443,3 +443,50 @@ window.event.cancelBubble=true
 
 return false
 ```
+ ## 41.querySelector系列方法与getElementsBy系列方法对比有什么不同？
+ >（1）两者的W3C标准不同
+ 
+ >querySelector系列属于W3C中的Selector API规范
+ 
+ >getElementsBy系列则属于W3C的DOM规范
+ 
+ 
+>（2）两者浏览器的兼容不同
+
+>querySelector系列基本能被所有浏览器支持（Firefox某个版本不支持）
+
+>getElementsBy系列则同城只有在考虑兼容性的时候才被提起（尽管两者功能相近）
+
+
+>（3）接受参数不同
+
+>querySelector系列接收的参数是一个CSS选择器名
+
+>getElementBy系列接收的参数只能是单一的className、tagName和name
+
+
+>（4）返回值不同
+
+>querySelectorAll()返回的是一个静态节点列表（Static NodeList）
+
+>getElementsBy系列返回的是一个动态节点列表（Live NodeList）
+```
+var ul = document.querySelectorAll('ul')[0];
+var list = ul.querySelectorAll('li');
+for (var i = 0; i < list.length; i++){
+    ul.appendChild(document.createElement('li'));
+}
+```
+
+```
+//这是个死循环
+var ul = document.getElementsByTagName('ul')[0];
+var list = ul.getElementsByTagName('li');
+    /*
+    //↓避免出现死循环
+    //var changdu = list.length;
+    */
+for (var i = 0; i < list.length; i++){
+    ul.appendChild(document.createElement('li'));
+}
+```
