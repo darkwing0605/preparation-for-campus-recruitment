@@ -15,7 +15,7 @@
 >异步是指进程不需要一直等下去，而是继续执行下面的操作，不管其他进程的状态。当有消息返回时系统会通知进程进行处理，这样可以提高执行的效率。
 ## 4.怎样添加、移除、移动、复制、创建和查找节点？
 >1）创建新节点
-```
+```javascript
 createDocumentFragment() //创建一个DOM片段
 
 createElement() //创建一个具体的元素
@@ -23,7 +23,7 @@ createElement() //创建一个具体的元素
 createTextNode() //创建一个文本节点
 ```
 >2）添加、移除、替换、插入
-```
+```javascript
 appendChild() //添加
 
 removeChild() //移除
@@ -33,7 +33,7 @@ replaceChild() //替换
 insertBefore() //插入
 ```
 >3）查找
-```
+```javascript
 getElementsByTagName() //通过标签名称
 
 getElementsByName() //通过元素的Name属性的值
@@ -70,7 +70,6 @@ getElementById() //通过元素Id，唯一性
 >Ajax可以实现动态不刷新（局部刷新）
 
 >readyState属性 状态 有5个可取值： 0=未初始化 ，1=启动 2=发送，3=接收，4=完成
-
 
 
 >ajax的缺点
@@ -303,27 +302,16 @@ getElementById() //通过元素Id，唯一性
 >拷贝继承
 
 >原型prototype机制或apply和call方法去实现较简单，建议使用构造函数与原型混合方式。
-```
+```javascript
 function Parent(){
-
-this.name = 'wang';
-
+	this.name = 'wang';
 }
-
-
-
 function Child(){
-
-this.age = 28;
-
+	this.age = 28;
 }
-
 Child.prototype = new Parent();//继承了Parent，通过原型
-
 var demo = new Child();
-
 alert(demo.age);
-
 alert(demo.name);//得到被继承的属性
 ```
 
@@ -426,21 +414,14 @@ alert(demo.name);//得到被继承的属性
 >注意：可能会造成内存泄漏
 
 ## 40.如何阻止事件冒泡和默认事件（程序）
-```
-function stopBubble(e)
-
-{
-
-if (e && e.stopPropagation)
-
-e.stopPropagation()
-
-else
-
-window.event.cancelBubble=true
-
+```javascript
+function stopBubble(e){
+	if (e && e.stopPropagation){
+		e.stopPropagation()  
+  	}else{
+    	window.event.cancelBubble=true  
+  	}
 }
-
 return false
 ```
  ## 41.querySelector系列方法与getElementsBy系列方法对比有什么不同？
@@ -470,7 +451,7 @@ return false
 >querySelectorAll()返回的是一个静态节点列表（Static NodeList）
 
 >getElementsBy系列返回的是一个动态节点列表（Live NodeList）
-```
+```javascript
 var ul = document.querySelectorAll('ul')[0];
 var list = ul.querySelectorAll('li');
 for (var i = 0; i < list.length; i++){
@@ -478,7 +459,7 @@ for (var i = 0; i < list.length; i++){
 }
 ```
 
-```
+```javascript
 //这是个死循环
 var ul = document.getElementsByTagName('ul')[0];
 var list = ul.getElementsByTagName('li');
