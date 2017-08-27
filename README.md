@@ -9,5 +9,7 @@
 
 [前端思考题](doSomeDebates.md)
 
+[一套JavaScript题目](javascript1.md)
+
 ---
 *以上部分内容整理自IMWeb社区*
